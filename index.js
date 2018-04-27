@@ -6,6 +6,7 @@ var Router = require('koa-router');
 var koaBody = require('koa-body')();
 
 var onMessage;
+var account_logined = null;
 
 async function main(){
     try {
@@ -25,8 +26,15 @@ var router = new Router();
 router
     .get('/message/', (ctx,next) => {
         console.log('ctx is:',ctx.request.query);
-        the_notfiy_men.say(ctx.request.query.data);
-        ctx.code = 200;
+        if (account_logined) {
+            the_notfiy_men.say(ctx.request.query.data);
+            ctx.res.statusCode = 200;
+            ctx.res.end();
+        }
+        else{
+            ctx.res.statusCode = 404;
+            ctx.res.end();
+        }
     });
     
 // router
@@ -52,6 +60,7 @@ Wechaty.instance() // Singleton
     })
     .on('login',     async  user => {
         console.log(`User ${user} logined`);
+        account_logined = user;
         const contactList = await Contact.findAll();
         console.log("debug contactlist is:",contactList.length);
         contactList.forEach((value,index)=>{
