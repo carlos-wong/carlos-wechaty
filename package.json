@@ -10,6 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "hot-import": "^0.1.27",
+    "koa": "^2.5.1",
+    "koa-body": "^2.5.0",
+    "koa-router": "^7.4.0",
     "qrcode-terminal": "^0.12.0",
     "wechaty": "0.14.0"
   }
