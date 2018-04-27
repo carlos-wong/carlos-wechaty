@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  server:
+    image: mhart/alpine-node:10
+    volumes:
+      - .:/app
+    ports:
+      - "3030:3030"
+    command: sh -c "cd /app && yarn install && yarn start"
