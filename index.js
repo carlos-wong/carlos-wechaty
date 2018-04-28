@@ -26,7 +26,7 @@ var router = new Router();
 router
     .get('/message/', (ctx,next) => {
         console.log('ctx is:',ctx.request.query);
-        if (account_logined) {
+        if (account_logined && the_notfiy_men) {
             the_notfiy_men.say(ctx.request.query.data);
             ctx.res.statusCode = 200;
             ctx.res.end();
@@ -64,6 +64,7 @@ Wechaty.instance() // Singleton
         const contactList = await Contact.findAll();
         console.log("debug contactlist is:",contactList.length);
         contactList.forEach((value,index)=>{
+            console.log('debug contact value:',value.name());
             if (value.name() === '潜龙勿庸') {
                 console.log('debug values is:',value.name());
                 the_notfiy_men = value;

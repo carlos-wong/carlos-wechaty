@@ -2,9 +2,9 @@ version: '2'
 
 services:
   server:
-    build: .
+    image: carlos/wechaty_autoinstall:0.4
     volumes:
-      - .:/app
+      - .:/bot
     ports:
-      - "3030:3030"
-    command: sh -c "cd /app  && yarn start"
+      - "3038:3038"
+    command: "index.js"
